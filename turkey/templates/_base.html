@@ -22,45 +22,7 @@
     <div class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="/" class="navbar-brand"><strong>Turkey</strong></a><a href="{{ url_for('version_history') }}" class="navbar-brand"><small>{{ version }}</small></a>
-        </div>
-        {%- if current_user and current_user.name -%}
-          <ul class="nav navbar-nav nav-pills pull-left">
-            {%- if current_page == 'active_tasks' -%} -%}
-              <li class="active">
-            {%- else -%}
-              <li>
-            {%- endif -%}
-              <a id="active_tasks_link" href="{{ url_for('home') }}">Active tasks</a>
-            </li>
-            {%- if current_page == 'archived_tasks' -%} -%}
-              <li class="active">
-            {%- else -%}
-              <li>
-            {%- endif -%}
-              <a id="archived_tasks_link" href="{{ url_for('archived_tasks') }}">Archived tasks</a>
-            </li>
-          </ul>
-        {%- endif -%}
-        <div class="nav nav-pills pull-right">
-        {%- if current_user and current_user.name -%}
-          <!-- We're not using navbar-link classes because they're camoflagued on a navbar-inverse -->
-          <p class="navbar-text">Hello, <a href="{{ url_for('me') }}">{{ current_user.name }}</a>!</p>
-          {%- if current_user.is_admin -%}
-             <a type="button" class="btn btn-default navbar-btn" href="{{ url_for('admin') }}">Site administration</a>
-          {%- endif -%}
-          <a type="button" class="btn btn-default navbar-btn" href="{{ url_for('logout') }}">Logout</a>
-        {%- else -%}
-<!-- Logout on logged in, login on not logged in -->
-<!-- Register on login page -->
-<!-- Forgot username/password on login page -->
-<!-- Allow email login on login page -->
-          {%- if registration_enabled -%}
-            <!-- We're not using navbar-link classes because they're camoflagued on a navbar-inverse -->
-            <p class="navbar-text">Hi, you can <a id="register-link" href="{{ url_for('register') }}">register</a> or </p>
-          {%- endif -%}
-          <a type="button" class="btn btn-default navbar-btn" href="{{ url_for('login') }}">Login</a>
-        {%- endif -%}"
+          <a href="/" class="navbar-brand"><strong>A quiz. Honest.</strong></a>
         </div>
       </div>
     </div>

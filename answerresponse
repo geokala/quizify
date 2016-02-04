@@ -1,0 +1,5 @@
+{ 
+    'question': 'Who is foo bar',
+    'answers': ['Newton', 'Lincoln'],
+    'correct_answer': 0
+}
