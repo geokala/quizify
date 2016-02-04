@@ -6,7 +6,7 @@ import datetime
 import calendar
 from turkey.utils import get_tasks_history, render_turkey, int_or_null
 from wtforms import Form, SelectField
-from questions import get_package
+from turkey.questions import get_package
 
 
 def get_question():
@@ -24,8 +24,10 @@ class AnswerForm(Form):
 
 previous_answer = None
 previous_options = []
+score = 0
 
 def home_view():
+    global score
     form = AnswerForm(request.form)
     global previous_options
     form.answer.choices = previous_options
@@ -35,13 +37,15 @@ def home_view():
     if request.method == 'POST' and form.validate():
         if form.answer.data == previous_answer:
             flash('You got it right!', 'success')
+            score += 1
         else:
             flash('Sorry, that was wrong.', 'danger')
         
     quiz_question = get_package()
+    #quiz_question = get_question()
     answers = [(quiz_question['answers'].index(value), value) for value in quiz_question['answers']]
     form.answer.choices = answers
     question = quiz_question['question']
     previous_answer = quiz_question['correct_answer']
     previous_options = answers
-    return render_template("home.html", question=question, form=form)
+    return render_template("home.html", question=question, form=form, score=score)

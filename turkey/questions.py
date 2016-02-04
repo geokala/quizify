@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-import urllib
 import random
+from urllib.request import urlopen
 
 MAX_ID = 10000
 QUESTIONS = 5
@@ -13,7 +13,7 @@ def get_next_package():
             q_id = random.randint(1, MAX_ID)
             print(q_id)
             url = URL.format(id=q_id)
-            html = urllib.urlopen(url).read()
+            html = urlopen(url).read()
             soup = BeautifulSoup(html)
             paragraphs = soup.find_all('p')
             if len(paragraphs) > 3 and paragraphs[2].text and paragraphs[3].text:
